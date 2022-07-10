@@ -8,7 +8,7 @@
 <title>View List Member</title>
 </head>
 <body>
-	<a href="reatemember.jsp">Create Member</a><br><br>
+	<a href="createmember.jsp">Create Member</a><br><br>
 	<a href="index.html">Home</a><br><br>
 		<table border="1">
 			<tr>
@@ -24,7 +24,7 @@
 				<th>Password</th>
 				<th colspan="10">Action</th>
 			</tr>
-			<c:forEach items ="${member}" var="m" varStatus="Member">
+			<c:forEach items ="${member}" var="m">
 			<tr>
 				<td><c:out value="${m.memberid}" /></td>
 				<td><c:out value="${m.mem_name}" /></td>

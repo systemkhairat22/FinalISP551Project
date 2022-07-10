@@ -31,6 +31,7 @@ public class UpdateMemberController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member m = new Member();
+		m.setMemberid(Integer.parseInt(request.getParameter("memberid")));
 		m.setMem_name(request.getParameter("mem_name"));
 		m.setMem_icnum(request.getParameter("mem_icnum"));
 		m.setMem_age(Integer.parseInt(request.getParameter("mem_age")));
@@ -43,7 +44,7 @@ public class UpdateMemberController extends HttpServlet {
 	   
 		dao.updatemember(m);
 		
-		request.setAttribute("Member", DaoMember.getAllMember());
+		request.setAttribute("member", DaoMember.getAllMember());
 		RequestDispatcher view = request.getRequestDispatcher("listmember.jsp");
 		view.forward(request, response);
 	}

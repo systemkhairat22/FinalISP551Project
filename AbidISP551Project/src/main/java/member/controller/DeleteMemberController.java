@@ -23,7 +23,7 @@ public class DeleteMemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("memberid"));
 		dao.deletemember(id);
-		request.setAttribute("Member", DaoMember.getAllMember());
+		request.setAttribute("member", DaoMember.getAllMember());
 		RequestDispatcher view = request.getRequestDispatcher("listmember.jsp");
 		view.forward(request, response);
 	}

@@ -22,7 +22,7 @@ public class ViewMemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("memberid"));
 	    request.setAttribute("m", DaoMember.getMemberById(id));
-	    RequestDispatcher view = request.getRequestDispatcher("ViewMember.jsp");
+	    RequestDispatcher view = request.getRequestDispatcher("viewmember.jsp");
 	    view.forward(request, response);
 	}
 }

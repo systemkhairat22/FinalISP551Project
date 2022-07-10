@@ -19,10 +19,15 @@ public class ListMemberController extends HttpServlet {
         dao = new DaoMember();
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("Member", DaoMember.getAllMember());
-		RequestDispatcher view = request.getRequestDispatcher("memberlist.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("member", DaoMember.getAllMember());
+		RequestDispatcher view = request.getRequestDispatcher("listmember.jsp");
 		view.forward(request, response);
 	}
-
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("member", DaoMember.getAllMember());
+		RequestDispatcher view = request.getRequestDispatcher("listmember.jsp");
+		view.forward(request, response);
+	}
 }

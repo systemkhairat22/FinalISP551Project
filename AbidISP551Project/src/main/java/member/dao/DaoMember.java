@@ -1,8 +1,7 @@
 package member.dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import user.model.*;
 import connectionDB.*;
@@ -120,7 +119,7 @@ public class DaoMember {
 				m.setMem_password(rs.getString("mem_password"));
 				m.setRepname(rs.getString("repname"));
 				m.setRepnum(rs.getString("repnum"));
-				
+				System.out.println("data mana woi??");
   				member.add(m);
   			}
   			
@@ -131,7 +130,10 @@ public class DaoMember {
   		} catch(Exception e) {
   			e.printStackTrace();
   		}
-  		
+  		for(Member mem:member) {
+  			System.out.println(mem.getMemberid());
+  			System.out.println(mem.getMem_name());
+  		}
   		return member;
   	}
    
