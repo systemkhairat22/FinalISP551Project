@@ -2,7 +2,6 @@ package member.dao;
 
 import java.sql.*;
 import java.util.*;
-
 import user.model.*;
 import connectionDB.*;
 public class DaoMember {
@@ -10,9 +9,39 @@ public class DaoMember {
 	static PreparedStatement ps = null;
 	static java.sql.Statement st = null;
 	static ResultSet rs = null;
-	private int memberid, mem_age;
-	private String mem_name, mem_address, mem_email, mem_phonenum, mem_password, repname, repnum;
+	private static int memberid;
+	private static String mem_password;
+	private int mem_age;
+	private String mem_name, mem_address, mem_email, mem_phonenum, repname, repnum;
 	private String mem_icnum;
+	
+	//LOGIN MEMBER
+	public static Member loginMember(Member m) {
+		memberid = m.getMemberid();
+		mem_password = m.getMem_password();
+		
+		try {
+			//connect to db
+			con = ConnectionManager.getConnection();
+			//create statement
+			ps=con.prepareStatement("SELECT * FROM member WHERE memberid = ? AND mem_password = ?");
+			ps.setInt(1, memberid);
+			ps.setString(2, mem_password);
+			
+			//execute query
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				m.setMemberid(rs.getInt("memberid"));
+				m.setValid(true);
+			}
+			else {
+				m.setValid(false);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return m;
+	}
 
     //GET MEMBER BY ID
     public static Member getMemberById(int memberid) {
@@ -201,5 +230,26 @@ public class DaoMember {
     	 }catch (Exception e) {
     		 e.printStackTrace();
     	 }
+  	}
+  	
+  	//CHANGE MEMBER PASSWORD
+  	public void ChangeMemberPassword(Member m,String new_pass) {
+  		memberid = m.getMemberid();
+  		try {
+  			//connect to db
+  			con = ConnectionManager.getConnection();
+  			
+  			//create statement
+  			ps = con.prepareStatement("UPDATE member SET mem_password=? WHERE memberid=?");
+  			ps.setString(1, new_pass);
+  			ps.setInt(2, memberid);
+  			
+  			//execute query
+  			ps.executeUpdate();
+  			//close connection
+  			con.close();
+  		}catch(SQLException e) {
+			e.printStackTrace();
+		}
   	}
 }

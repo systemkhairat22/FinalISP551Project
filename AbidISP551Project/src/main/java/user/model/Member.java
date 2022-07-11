@@ -11,9 +11,10 @@ public class Member {
 	private String mem_password;
 	private String repname;
 	private String repnum;
+	private boolean valid;
 	
 	public Member(int memberid, String mem_icnum, String mem_name, int mem_age, String mem_address, String mem_email,
-			String mem_phonenum, String mem_password, String repname, String repnum) {
+			String mem_phonenum, String mem_password, String repname, String repnum,boolean valid) {
 		super();
 		this.memberid = memberid;
 		this.mem_icnum = mem_icnum;
@@ -25,6 +26,7 @@ public class Member {
 		this.mem_password = mem_password;
 		this.repname = repname;
 		this.repnum = repnum;
+		this.setValid(valid);
 	}
 
 	public Member(String mem_icnum, String mem_name, int mem_age, String mem_address, String mem_email,
@@ -123,5 +125,13 @@ public class Member {
 
 	public void setRepnum(String repnum) {
 		this.repnum = repnum;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 }
