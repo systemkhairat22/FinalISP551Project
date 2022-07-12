@@ -9,9 +9,40 @@ public class DaoAdmin {
 	static PreparedStatement ps = null;
 	static java.sql.Statement st = null;
 	static ResultSet rs = null;
-	private int adminid, add_age, supervisorid;
-	private String admin_icnum, add_name, add_email, add_phonenum, add_password;
-
+	static int adminid;
+	static String add_password;
+	private int add_age, supervisorid;
+	private String admin_icnum, add_name, add_email, add_phonenum;
+	
+	//LOGIN MEMBER
+		public static Admin loginAdmin(Admin a) {
+			adminid = a.getAdminid();
+			add_password = a.getAdd_password();
+			
+			try {
+				//connect to db
+				con = ConnectionManager.getConnection();
+				//create statement
+				ps=con.prepareStatement("SELECT * FROM admin WHERE adminid = ? AND add_password = ?");
+				ps.setInt(1, adminid );
+				ps.setString(2, add_password);
+				
+				//execute query
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					a.setAdminid(rs.getInt("adminid"));
+					a.setValid(true);
+				}
+				else {
+					a.setValid(false);
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return a;
+		}
+	
+	
     //GET ADMIN BY ID
     public static Admin getAdminById(int adminid) {
     	Admin a = new Admin();
@@ -186,28 +217,20 @@ public class DaoAdmin {
   	//UPDATE ADMIN
   	public void updateadmin (Admin admin) {
   		adminid = admin.getAdminid();
-  		add_name = admin.getAdd_name();
-    	admin_icnum = admin.getAdmin_icnum();
     	add_age = admin.getAdd_age();
     	add_email = admin.getAdd_email();
         add_phonenum = admin.getAdd_phonenum();
-    	add_password = admin.getAdd_password();
-    	supervisorid = admin.getSupervisorid();
     	
     	 try {
     		 //call getConnection method
     		 con = ConnectionManager.getConnection ();
     		 
     		 //create statement
-    		ps = con.prepareStatement("UPDATE admin SET add_name=?, admin_icnum=?, add_age=?, add_email=?, add_phonenum=?, add_password=?,supervisorid=? WHERE adminid=?");
-    		ps.setString(1, add_name);
-     		ps.setString(2,admin_icnum);
-     		ps.setInt(3, add_age);
-     		ps.setString(4, add_email);
-     		ps.setString(5, add_phonenum);
-     		ps.setString(6, add_password);
-     		ps.setInt(7, supervisorid );
-     		ps.setInt(8, adminid);
+    		ps = con.prepareStatement("UPDATE admin SET add_age=?, add_email=?, add_phonenum=? WHERE adminid=?");
+     		ps.setInt(1, add_age);
+     		ps.setString(2, add_email);
+     		ps.setString(3, add_phonenum);
+     		ps.setInt(4, adminid);
     		 
      		//execute query
      		ps.executeUpdate();
@@ -220,5 +243,26 @@ public class DaoAdmin {
     	 }catch (Exception e) {
     		 e.printStackTrace();
     	 }
+  	}
+  	//CHANGE ADMIN PASSWORD
+  	public void ChangeAdminPassword(Admin a, String new_pass) {
+  		adminid = a.getAdminid();
+  		try {
+  			//connect to db
+  			con = ConnectionManager.getConnection();
+  			
+  			//create statement
+  			ps = con.prepareStatement("UPDATE admin SET add_password=? WHERE adminid=?");
+  			ps.setString(1, new_pass);
+  			ps.setInt(2, adminid);
+  			
+  			//execute query
+  			ps.executeUpdate();
+  			//close connection
+  			con.close();
+  			
+  		}catch(SQLException e) {
+			e.printStackTrace();
+		}
   	}
 }

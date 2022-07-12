@@ -17,7 +17,7 @@ if(session.getAttribute("currentSessionUser")==null)
 <title>Home Member</title>
 </head>
 <body>
-	<a href="ManageProfileMemberController">Update Profile</a><br><br>
+	<a href="ManageProfileMemberController">Manage profile</a><br><br>
 		
 	<h1>Member Profile</h1>
 	Member ID: <c:out value="${m.memberid}"/> <br>

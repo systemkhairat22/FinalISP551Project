@@ -9,9 +9,10 @@ public class Admin {
 	private String add_password;
 	private String add_phonenum;
 	private int supervisorid ;
+	private boolean valid;
 	
 	public Admin(int adminid, String admin_icnum, String add_name, int add_age, String add_email, String add_password,
-			String add_phonenum, int supervisorid) {
+			String add_phonenum, int supervisorid,boolean valid) {
 		super();
 		this.adminid = adminid;
 		this.admin_icnum = admin_icnum;
@@ -21,6 +22,7 @@ public class Admin {
 		this.add_password = add_password;
 		this.add_phonenum = add_phonenum;
 		this.supervisorid = supervisorid;
+		this.setValid(valid);
 	}
 	
 	public Admin(String admin_icnum, String add_name, int add_age, String add_email, String add_password,
@@ -101,5 +103,13 @@ public class Admin {
 
 	public void setSupervisorid(int supervisorid) {
 		this.supervisorid = supervisorid;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 }

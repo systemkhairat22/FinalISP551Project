@@ -38,7 +38,7 @@ public class LoginMemberController extends HttpServlet {
 		}
 		else 
 		{
-			JOptionPane.showMessageDialog(null, "Please enter a valid Student No & Password", "Error Occurred", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Please enter a valid Member Id & Password", "Error Occurred", JOptionPane.WARNING_MESSAGE);
 			response.sendRedirect("loginmember.jsp");
 		}
 	}

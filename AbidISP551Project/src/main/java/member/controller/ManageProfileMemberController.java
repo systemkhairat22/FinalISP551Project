@@ -21,8 +21,9 @@ public class ManageProfileMemberController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int memberid = (int) request.getSession().getAttribute("currentSessionUser");
-		request.setAttribute("member", DaoMember.getMemberById(memberid));
+		request.setAttribute("m", DaoMember.getMemberById(memberid));
 		RequestDispatcher view = request.getRequestDispatcher("managemember.jsp");
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,8 +49,6 @@ public class ManageProfileMemberController extends HttpServlet {
 		if(action.equalsIgnoreCase("update_profile")) {
 			//TO UPDATE PROFILE
 			m.setMemberid((int) request.getSession().getAttribute("currentSessionUser"));
-			m.setMem_name(request.getParameter("mem_name"));
-			m.setMem_icnum(request.getParameter("mem_icnum"));
 			m.setMem_age(Integer.parseInt(request.getParameter("mem_age")));
 			m.setMem_address(request.getParameter("mem_address"));
 			m.setMem_phonenum(request.getParameter("mem_phonenum"));
@@ -60,7 +59,7 @@ public class ManageProfileMemberController extends HttpServlet {
 			dao.updatemember(m);
 		}
 		//FORWARD TO MANAGE MEMBER
-		request.setAttribute("member", DaoMember.getAllMember());
+		request.setAttribute("m", DaoMember.getMemberById(m.getMemberid()));
 		RequestDispatcher view = request.getRequestDispatcher("managemember.jsp");
 		view.forward(request, response);
 	}

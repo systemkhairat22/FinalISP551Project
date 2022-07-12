@@ -8,7 +8,7 @@
 </head>
 <body>
 	<a href="ListMemberController">LIST MEMBER</a><br>
-	<a href = "index.html">home</a>
+	<a href = "homeadmin.jsp">BACK</a>
 	<h1>Create Member</h1><br>
 	<form action="CreateMemberController" method="post">
 		<table>

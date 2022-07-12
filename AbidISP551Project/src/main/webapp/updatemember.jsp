@@ -11,23 +11,24 @@
 <a href="ListMemberController">List Of Member</a><br><br>
 	
 	<form action="UpdateMemberController" method="post">
-		Member IC Number: <br>
-		<input type="text" name="mem_icnum" value="<c:out value="${m.mem_icnum}"/>"/><br>
-		Member Name: <br>
-		<input type="text" name="mem_name" value="<c:out value="${m.mem_name}"/>"/><br>
-		Member Age: <br>
+		
+		Member ID: ${m.memberid} <br>
+		
+		Member IC Number: ${m.mem_icnum} <br>
+		
+		Member Name: ${m.mem_name}<br>
+		
+		Member Age:
 		<input type="number" name="mem_age" value="<c:out value="${m.mem_age}"/>"/><br>
-		Member Address: <br>
+		Member Address:
 		<input type="text" name="mem_address" value="<c:out value="${m.mem_address}"/>"/><br>
-		Member Email: <br>
+		Member Email:
 		<input type="text" name="mem_email" value="<c:out value="${m.mem_email}"/>"/><br>
-		Member Phone Number: <br>
+		Member Phone Number: 
 		<input type="text" name="mem_phonenum" value="<c:out value="${m.mem_phonenum}"/>"/><br>
-		Password: <br>
-		<input type="password" name="mem_password" value="<c:out value="${m.mem_password}"/>"/><br>
-		Representative Name: <br>
+		Representative Name: 
 		<input type="text" name="repname" value="<c:out value="${m.repname}"/>"/><br>
-		Representative Number: <br>
+		Representative Number: 
 		<input type="text" name="repnum" value="<c:out value="${m.repnum}"/>"/>
 		<input type="hidden" name="memberid" value="<c:out value="${m.memberid}"/>"/><br><br>
 		

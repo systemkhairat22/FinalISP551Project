@@ -16,52 +16,40 @@ if (session.getAttribute("currentSessionUser") == null)
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Manage Member Profile</title>
+<title>Manage Admin Profile</title>
 </head>
 <body>
-	<a href = "homemember.jsp">BACK</a><br><br>
-	<h1>MANAGE PROFILE</h1>
-	<form action="ManageProfileMemberController?action=update_profile" method="post">
+	<a href = "homeadmin.jsp">BACK</a><br><br>
+	<h1>MANAGE ADMIN PROFILE</h1>
+	<form action="ManageProfileAdminController?action=update_profile" method="post">
 		<table>
 			<tbody>
 				<tr>
-					<td>MEMBER ID</td>
-					<td>${m.memberid}</td>
+					<td>ADMIN ID</td>
+					<td>${a.adminid}</td>
 				</tr>
 				<tr>
 					<td>NAME</td>
-					<td>${m.mem_name}</td>
+					<td>${a.add_name}</td>
 				</tr>
 				<tr>
 					<td>IC NUMBER</td>
-					<td>${m.mem_icnum}</td>
+					<td>${a.admin_icnum}</td>
 				</tr>
 				<tr>
 					<td>AGE</td>
-					<td><input type="number" name="mem_age" value="${m.mem_age}"/></td>
-				</tr>
-				<tr>
-					<td>ADRESS</td>
-					<td><input type="text" name="mem_address" value="${m.mem_address}"/></td>
+					<td><input type="number" name="add_age" value="${a.add_age}"/></td>
 				</tr>
 				<tr>
 					<td>EMAIL</td>
-					<td><input type="text" name="mem_email" value="${m.mem_email}"/></td>
+					<td><input type="text" name="add_email" value="${a.add_email}"/></td>
 				</tr>
 				<tr>
 					<td>PHONE NUMBER</td>
-					<td><input type="text" name="mem_phonenum" value="${m.mem_phonenum}"/></td>
+					<td><input type="text" name="add_phonenum" value="${a.add_phonenum}"/></td>
 				</tr>
 				<tr>
-					<td>REPRESENTATIVE NAME</td>
-					<td><input type="text" name="repname" value="${m.repname}"/></td>
-				</tr>
-				<tr>
-					<td>REPRESENTATIVE IC NUMBER</td>
-					<td><input type="text" name="repnum" value="${m.repnum}"/></td>
-				</tr>
-				<tr>
-					<td><input type="hidden" name="memberid" value="<c:out value="${m.memberid}"/>"/><br><br></td>
+					<td><input type="hidden" name="adminid" value="<c:out value="${a.adminid}"/>"/><br><br></td>
 				</tr>
 			</tbody>
 		</table>
@@ -70,7 +58,7 @@ if (session.getAttribute("currentSessionUser") == null)
 	</form>
 	
 	<h1>CHANGE PASSWORD</h1>
-	<form action="ManageProfileMemberController?action=change_pass" method="post">
+	<form action="ManageProfileAdminController?action=change_pass" method="post">
 		<table>
 			<tbody>
 				<tr>

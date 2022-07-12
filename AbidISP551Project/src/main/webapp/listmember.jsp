@@ -8,8 +8,8 @@
 <title>View List Member</title>
 </head>
 <body>
-	<a href="createmember.jsp">Create Member</a><br><br>
-	<a href="index.html">Home</a><br><br>
+	<a href="createmember.jsp">CREATE MEMBER</a><br><br>
+	<a href="homeadmin.jsp">BACK</a><br><br>
 		<table border="1">
 			<tr>
 				<th>Member ID</th>
