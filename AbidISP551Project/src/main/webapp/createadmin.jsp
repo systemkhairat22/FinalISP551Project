@@ -9,7 +9,7 @@
 <body>
 	<h1>Create Admin</h1>
 	<a href = "ListAdminController">Admin List</a><br>
-	<a href = "index.html">home</a><br>
+	<a href = "homesupervisor.jsp">back</a><br>
 	<form action="CreateAdminController" method="post">
 		<table>
 			<tbody>
@@ -40,19 +40,6 @@
                    <tr>
                        <th><label for="memPwd2">Confirm Password</label></th>
                        <th><input type="password"name="add_password"></th>
-                   </tr>
-                   <tr>
-                       <th><label for="supervisorid">Supervisor ID</label>
-                       <th><input type="number"name="supervisorid"></th>
-                       
-                       
-                       
-                       
-                      <!--  <th> <input type= "radio" name= "supervisorid" value ="yes">YES</th>
-                             
-                          <th>  <input type= "radio" name= "supervisorid" value ="no">NO</th>--->
-                       
-                  
                    </tr>
                    
 			</tbody>

@@ -14,35 +14,62 @@ public class DaoAdmin {
 	private int add_age, supervisorid;
 	private String admin_icnum, add_name, add_email, add_phonenum;
 	
-	//LOGIN MEMBER
-		public static Admin loginAdmin(Admin a) {
-			adminid = a.getAdminid();
-			add_password = a.getAdd_password();
+	//LOGIN ADMIN
+	public static Admin loginAdmin(Admin a) {
+		adminid = a.getAdminid();
+		add_password = a.getAdd_password();
+		
+		try {
+			//connect to db
+			con = ConnectionManager.getConnection();
+			//create statement
+			ps=con.prepareStatement("SELECT * FROM admin WHERE adminid = ? AND add_password = ?");
+			ps.setInt(1, adminid );
+			ps.setString(2, add_password);
 			
-			try {
-				//connect to db
-				con = ConnectionManager.getConnection();
-				//create statement
-				ps=con.prepareStatement("SELECT * FROM admin WHERE adminid = ? AND add_password = ?");
-				ps.setInt(1, adminid );
-				ps.setString(2, add_password);
-				
-				//execute query
-				rs = ps.executeQuery();
-				if(rs.next()) {
-					a.setAdminid(rs.getInt("adminid"));
-					a.setValid(true);
-				}
-				else {
-					a.setValid(false);
-				}
-			}catch(SQLException e) {
-				e.printStackTrace();
+			//execute query
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				a.setAdminid(rs.getInt("adminid"));
+				a.setValid(true);
 			}
-			return a;
+			else {
+				a.setValid(false);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
+		return a;
+	}
 	
-	
+	//LOGIN SUPERVISOR
+	public static Admin loginSupervisor(Admin a) {
+		adminid = a.getAdminid();
+		add_password = a.getAdd_password();
+		
+		try {
+			//connect to db
+			con = ConnectionManager.getConnection();
+			//create statement
+			ps=con.prepareStatement("SELECT * FROM admin WHERE adminid = ? AND add_password = ? AND supervisorid = 0");
+			ps.setInt(1, adminid );
+			ps.setString(2, add_password);
+			
+			//execute query
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				a.setAdminid(rs.getInt("adminid"));
+				a.setValid(true);
+			}
+			else {
+				a.setValid(false);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
     //GET ADMIN BY ID
     public static Admin getAdminById(int adminid) {
     	Admin a = new Admin();
@@ -88,45 +115,11 @@ public class DaoAdmin {
     	add_password = admin.getAdd_password();
     	supervisorid = admin.getSupervisorid();
         
-    	if (supervisorid == 0) {  // 0 bermaksud tiada supervisor, auto assign 0 if no supervisor id in create admin JSP
-    		try
-        	{
-        	//call getConnection() method
-        		con = ConnectionManager.getConnection();
-        		
-        	//create statement
-        		ps = con.prepareStatement("INSERT INTO admin(add_name,admin_icnum,add_age,add_email,add_phonenum,add_password) values(?,?,?,?,?,?)");
-        		ps.setString(1, add_name);
-        		ps.setString(2,admin_icnum);
-        		ps.setInt(3, add_age);
-        		ps.setString(4, add_email);
-        		ps.setString(5, add_phonenum);
-        		ps.setString(6, add_password);
-        		
-        		
-        		
-        		//execute query
-        		ps.executeUpdate();
-    			System.out.println("Successfully inserted without supervisor");
-                
-    			//close connection
-                con.close();
-        	}
-        	catch (Exception e) {
-                e.printStackTrace();
-            }
-        	
-    		
-    	} // end of if ( utk supervisorid dpt baca null)
-    	
-    	else {
-    		
-    	try
-    	{
-    	//call getConnection() method
+    	try {
+    		//call getConnection() method
     		con = ConnectionManager.getConnection();
     		
-    	//create statement
+    		//create statement
     		ps = con.prepareStatement("INSERT INTO admin(add_name,admin_icnum,add_age,add_email,add_phonenum,add_password,supervisorid) values(?,?,?,?,?,?,?)");
     		ps.setString(1, add_name);
     		ps.setString(2,admin_icnum);
@@ -136,19 +129,15 @@ public class DaoAdmin {
     		ps.setString(6, add_password);
     		ps.setInt(7, supervisorid);
     		
-    		
     		//execute query
     		ps.executeUpdate();
 			System.out.println("Successfully inserted");
             
 			//close connection
             con.close();
-    	}
-    	catch (Exception e) {
+    	}catch (Exception e) {
             e.printStackTrace();
         }
-    	
-    	} // end of else
     }
 
     //GET ALL ADMIN

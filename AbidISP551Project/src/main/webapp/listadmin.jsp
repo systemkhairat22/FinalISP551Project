@@ -10,7 +10,7 @@
 <body>
 	
 <a href="createadmin.jsp">Create Admin</a><br><br>
-<a href="index.html">Home</a><br><br>
+<a href="homesupervisor.jsp">Back</a><br><br>
 		<table border="1">
 			<tr>
 				<th>Admin ID</th>

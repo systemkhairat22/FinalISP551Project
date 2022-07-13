@@ -36,7 +36,7 @@ public class CreateMemberController extends HttpServlet {
 		
 		dao.addMember(m); //invoke method addShawl() in ShawlDAO
 		
-		request.setAttribute("Member", DaoMember.getAllMember());
+		request.setAttribute("member", DaoMember.getAllMember());
 		RequestDispatcher view = request.getRequestDispatcher("listmember.jsp");
 		view.forward(request, response);
 	}

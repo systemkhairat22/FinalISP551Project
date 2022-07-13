@@ -26,21 +26,40 @@ public class LoginAdminController extends HttpServlet {
 		a.setAdminid(Integer.parseInt(request.getParameter("adminid")));
 		a.setAdd_password(request.getParameter("add_password"));
 		
-		a = DaoAdmin.loginAdmin(a);
-		
-		if(a.isValid()) {
-			HttpSession session = request.getSession(true);
-			session.setAttribute("currentSessionUser", a.getAdminid());
-			request.setAttribute("a", DaoAdmin.getAdminById(a.getAdminid()));
-			//request.setAttribute(getServletName(), session);
-			RequestDispatcher view = request.getRequestDispatcher("homeadmin.jsp");
-			view.forward(request, response);
+		if(Integer.parseInt(request.getParameter("adminid")) == 201) {
+			a = DaoAdmin.loginSupervisor(a);
+			if(a.isValid()) {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("currentSessionUser", a.getAdminid());
+				request.setAttribute("a", DaoAdmin.getAdminById(a.getAdminid()));
+				request.setAttribute(getServletName(), session);
+				RequestDispatcher view = request.getRequestDispatcher("homesupervisor.jsp");
+				view.forward(request, response);
+			}
+			else 
+			{
+				JOptionPane.showMessageDialog(null, "Please enter a valid Admin Id & Password", "Error Occurred", JOptionPane.WARNING_MESSAGE);
+				response.sendRedirect("loginadmin.jsp");
+			}
 		}
-		else 
-		{
-			JOptionPane.showMessageDialog(null, "Please enter a valid Admin Id & Password", "Error Occurred", JOptionPane.WARNING_MESSAGE);
-			response.sendRedirect("loginadmin.jsp");
+		else {
+			a = DaoAdmin.loginAdmin(a);
+			
+			if(a.isValid()) {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("currentSessionUser", a.getAdminid());
+				request.setAttribute("a", DaoAdmin.getAdminById(a.getAdminid()));
+				request.setAttribute(getServletName(), session);
+				RequestDispatcher view = request.getRequestDispatcher("homeadmin.jsp");
+				view.forward(request, response);
+			}
+			else 
+			{
+				JOptionPane.showMessageDialog(null, "Please enter a valid Admin Id & Password", "Error Occurred", JOptionPane.WARNING_MESSAGE);
+				response.sendRedirect("loginadmin.jsp");
+			}
 		}
+			
 	}
 
 }
