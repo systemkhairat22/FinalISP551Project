@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import user.model.*;
 import admin.dao.*;
@@ -29,6 +30,7 @@ public class UpdateAdminController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Admin a = new Admin();
+		HttpSession session = request.getSession();
 		a.setAdminid(Integer.parseInt(request.getParameter("adminid")));
 		a.setAdd_name(request.getParameter("add_name"));
 		a.setAdmin_icnum(request.getParameter("admin_icnum"));
@@ -40,7 +42,7 @@ public class UpdateAdminController extends HttpServlet {
    
 		dao.updateadmin(a);
    
-		request.setAttribute("admin", DaoAdmin.getAllAdmin());
+		request.setAttribute("admin", DaoAdmin.getAllAdmin((int)session.getAttribute("currentSessionUser")));
 		RequestDispatcher view = request.getRequestDispatcher("listadmin.jsp");
 		view.forward(request, response);
 	}

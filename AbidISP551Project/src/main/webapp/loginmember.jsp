@@ -24,7 +24,7 @@
                    
 			</tbody>
 		</table>
-		<input  type="submit" value= "submit">
+		<input  type="submit" value= "login">
         <input type="reset"  value = "reset">
 	</form>
 </body>

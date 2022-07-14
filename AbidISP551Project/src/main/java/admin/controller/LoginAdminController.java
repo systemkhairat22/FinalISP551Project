@@ -26,7 +26,7 @@ public class LoginAdminController extends HttpServlet {
 		a.setAdminid(Integer.parseInt(request.getParameter("adminid")));
 		a.setAdd_password(request.getParameter("add_password"));
 		
-		if(Integer.parseInt(request.getParameter("adminid")) == 201) {
+		if(Integer.parseInt(request.getParameter("adminid")) == 201||Integer.parseInt(request.getParameter("adminid")) == 202) {
 			a = DaoAdmin.loginSupervisor(a);
 			if(a.isValid()) {
 				HttpSession session = request.getSession(true);

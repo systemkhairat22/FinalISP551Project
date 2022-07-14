@@ -32,7 +32,7 @@ public class CreateAdminController extends HttpServlet {
 		a.setSupervisorid((int)session.getAttribute("currentSessionUser"));
 		dao.addAdmin(a); //invoke method addmember() in memberDAO
 		
-		request.setAttribute("admin", DaoAdmin.getAllAdmin());
+		request.setAttribute("admin", DaoAdmin.getAllAdmin((int)session.getAttribute("currentSessionUser")));
 		RequestDispatcher view = request.getRequestDispatcher("listadmin.jsp");
 		view.forward(request, response);
 	}

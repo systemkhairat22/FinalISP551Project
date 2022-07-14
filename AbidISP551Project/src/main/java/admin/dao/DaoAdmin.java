@@ -141,7 +141,7 @@ public class DaoAdmin {
     }
 
     //GET ALL ADMIN
-  	public static List<Admin> getAllAdmin() {
+  	public static List<Admin> getAllAdmin(int supervisorid) {
   		List<Admin> admin= new ArrayList<Admin>();
   		
   		try {
@@ -149,11 +149,10 @@ public class DaoAdmin {
   			con = ConnectionManager.getConnection();
   			
   			//create statement
-  			st = con.createStatement();
-  			String sql = "SELECT * FROM  admin ORDER BY adminid";
-  			
+  			ps=con.prepareStatement("SELECT * FROM  admin WHERE supervisorid = ? ORDER BY adminid");
+  			ps.setInt(1, supervisorid);
   			//execute query
-  			rs = st.executeQuery(sql);
+  			rs = ps.executeQuery();
   			
   			while(rs.next()) {		//process result
   				Admin a = new Admin();
@@ -164,8 +163,7 @@ public class DaoAdmin {
 			    a.setAdd_phonenum(rs.getString("add_phonenum"));
 				a.setAdd_email(rs.getString("add_email"));
 				a.setAdd_password(rs.getString("add_password"));
-				a.setSupervisorid(rs.getInt("supervisorid"));
-					
+				a.setSupervisorid(supervisorid);
   				admin.add(a);
   			}
   			

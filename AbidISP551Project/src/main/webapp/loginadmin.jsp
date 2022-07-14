@@ -13,7 +13,7 @@
 		<table>
 			<tbody>
                    <tr>
-                       <th><label for="adminid">ADMIN ID</label></th>
+                       <th><label for="adminid">Admin ID</label></th>
                        <th><input type="number"  name="adminid" placeholder="Admin id"></th>
                    </tr>
                    
@@ -24,7 +24,7 @@
                    
 			</tbody>
 		</table>
-		<input  type="submit" value= "submit">
+		<input  type="submit" value= "login">
         <input type="reset"  value = "reset">
 	</form>
 </body>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import admin.dao.*;
 @WebServlet("/ListAdminController")
@@ -19,7 +20,8 @@ public class ListAdminController extends HttpServlet {
         dao = new DaoAdmin();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("admin", DaoAdmin.getAllAdmin());
+		HttpSession session = request.getSession();
+		request.setAttribute("admin", DaoAdmin.getAllAdmin((int)session.getAttribute("currentSessionUser")));
 		RequestDispatcher view = request.getRequestDispatcher("listadmin.jsp");
 		view.forward(request, response);
 	}
