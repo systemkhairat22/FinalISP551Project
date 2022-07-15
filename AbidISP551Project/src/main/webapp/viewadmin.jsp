@@ -17,6 +17,6 @@
 	Member Email: <c:out value="${a.add_email}"/> <br>
    	Phone Number: <c:out value="${a.add_phonenum}"/> <br>
 	Member password: <c:out value="${a.add_password}"/> <br>
-	Supervisor ID: <c:out value="${supervisorid}"/> <br>
+	Supervisor ID: <c:out value="${a.supervisorid}"/> <br>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <body>
 	<h1>Create Admin</h1>
 	<a href = "ListAdminController">Admin List</a><br>
-	<a href = "homesupervisor.jsp">back</a><br>
+	<a href = "ViewSupervisorController">back</a><br>
 	<form action="CreateAdminController" method="post">
 		<table>
 			<tbody>

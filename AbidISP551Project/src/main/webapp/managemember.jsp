@@ -19,7 +19,7 @@ if (session.getAttribute("currentSessionUser") == null)
 <title>Manage Member Profile</title>
 </head>
 <body>
-	<a href = "homemember.jsp">BACK</a><br><br>
+	<a href = "ViewMemberController2">BACK</a><br><br>
 	<h1>MANAGE PROFILE</h1>
 	<form action="ManageProfileMemberController?action=update_profile" method="post">
 		<table>

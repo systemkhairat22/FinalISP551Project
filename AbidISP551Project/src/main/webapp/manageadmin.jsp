@@ -19,7 +19,7 @@ if (session.getAttribute("currentSessionUser") == null)
 <title>Manage Admin Profile</title>
 </head>
 <body>
-	<a href = "homeadmin.jsp">BACK</a><br><br>
+	<a href = "ViewAdminController2">BACK</a><br><br>
 	<h1>MANAGE PROFILE</h1>
 	<form action="ManageProfileAdminController?action=update_profile" method="post">
 		<table>

@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%//prevent Caching of JSP Pages
+ response.setHeader("Cache-Control","no-cache");
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader("Expires",0);
+//get session and check if session null, go to login page
+if(session.getAttribute("currentSessionUser")==null)
+	response.sendRedirect("index.html");%>
+<%int id = (Integer) session.getAttribute("currentSessionUser");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +17,7 @@
 </head>
 <body>
 	<a href="ListMemberController">LIST MEMBER</a><br>
-	<a href = "homeadmin.jsp">BACK</a>
+	<a href = "ViewAdminController2">BACK</a>
 	<h1>Create Member</h1><br>
 	<form action="CreateMemberController" method="post">
 		<table>

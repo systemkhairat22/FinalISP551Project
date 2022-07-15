@@ -32,7 +32,6 @@ public class LoginAdminController extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", a.getAdminid());
 				request.setAttribute("a", DaoAdmin.getAdminById(a.getAdminid()));
-				request.setAttribute(getServletName(), session);
 				RequestDispatcher view = request.getRequestDispatcher("homesupervisor.jsp");
 				view.forward(request, response);
 			}
@@ -49,7 +48,6 @@ public class LoginAdminController extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", a.getAdminid());
 				request.setAttribute("a", DaoAdmin.getAdminById(a.getAdminid()));
-				request.setAttribute(getServletName(), session);
 				RequestDispatcher view = request.getRequestDispatcher("homeadmin.jsp");
 				view.forward(request, response);
 			}

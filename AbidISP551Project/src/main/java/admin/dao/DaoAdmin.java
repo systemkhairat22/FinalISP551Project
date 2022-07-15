@@ -177,7 +177,38 @@ public class DaoAdmin {
   		
   		return admin;
   	}
-
+  	
+  	//GET ALL ADMIN CONTACT
+  	public static List<Admin> getAllAdminContact() {
+  		List<Admin> admin= new ArrayList<Admin>();
+  		
+  		try {
+  			//call getConnection() method
+  			con = ConnectionManager.getConnection();
+  			
+  			//create statement
+  			ps=con.prepareStatement("SELECT add_name,add_phonenum FROM  admin ORDER BY adminid");
+  		
+  			//execute query
+  			rs = ps.executeQuery();
+  			
+  			while(rs.next()) {		//process result
+  				Admin a = new Admin();
+				a.setAdd_name(rs.getString("add_name"));
+			    a.setAdd_phonenum(rs.getString("add_phonenum"));
+  				admin.add(a);
+  			}
+  			
+  			//close connection
+  			con.close();
+  			
+  			
+  		} catch(Exception e) {
+  			e.printStackTrace();
+  		}
+  		
+  		return admin;
+  	}
 
 
 	//DELETE ADMIN
